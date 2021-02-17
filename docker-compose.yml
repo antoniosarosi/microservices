@@ -9,9 +9,13 @@ services:
       context: ./backend
     ports:
       - 5000:5000
+    depends_on:
+      - mongo
 
   vue:
     build:
       context: ./frontend
     ports:
       - 8080:8080
+    depends_on:
+      - express
