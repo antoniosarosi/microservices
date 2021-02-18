@@ -7,16 +7,13 @@ services:
   express:
     image: node:current-alpine
     working_dir: /app
-    environment: 
-      MONGO_URL: "mongodb://mongo/todos"
-      PORT: 5000
-    ports:
-      - 5000:5000
     volumes:
       - ./backend:/app
+    ports:
+      - 5000:5000
     depends_on:
       - mongo
-    command: sh -c "npm install && npm start"
+    command: sh -c "npm install && npm start" 
 
   vue:
     image: node:current-alpine
@@ -25,7 +22,6 @@ services:
       - ./frontend:/app
     ports:
       - 8080:8080
-    stdin_open: true
-    command: sh -c "npm install && npm run serve"
     depends_on:
       - express
+    command: sh -c "npm install && npm run serve"
